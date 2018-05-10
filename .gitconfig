@@ -1,0 +1,61 @@
+
+    [user]
+	name = mahhov
+	email = mahhov1@gmail.com
+
+	[alias]
+		co = checkout
+		ci = commit
+		st = status
+        cp = cherry-pick
+		hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+		type = cat-file -t
+		dump = cat-file -p
+		lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+		lolaNotAll = log --graph --decorate --pretty=oneline --abbrev-commit
+		lola9 = log --graph --decorate --pretty=oneline --abbrev-commit -n9
+		lola20 = log --graph --decorate --pretty=oneline --abbrev-commit -n20
+		cb = rev-parse --abbrev-ref HEAD
+		dci = duet-commit
+		pl = pull --ff-only
+		unpushed = log --branches --not --remotes --simplify-by-decoration --decorate --oneline
+		ready = rebase -i @{u}
+		lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+		story = "!f() { n=$1; story=$(sed -e \"s/#//\" <<< $n); branch=$(git branch -a | grep -o \"$story[-_a-zA-Z]*\" | head -n 1); git checkout $branch; }; f"
+		commits = for-each-ref --count=10 --sort=-committerdate refs/heads/
+		commits2 = "!for ref in $(git for-each-ref --count=15 --sort=-committerdate refs/heads/ --format='%(*refname)'); do echo $(git --no-pager log $ref -n 1 --oneline); echo ''; done;"
+		findc = "!f() { git log --oneline -n 15 --grep=$1; }; f"
+		deleteBranches = "!f() { git branch -r | grep -v 'master' | grep 'origin/' | sed 's/origin//' | xargs -n 1 git push origin --delete; }; f"
+		showDeleteBranches = "!f() { git branch -r | grep -v 'master' | grep 'origin/' | sed 's/origin//'; }; f"
+		findb = "!f() { git branch -v | grep $1; }; f"
+		revertWhite = "!f() { git add . && git commit -am 'tmp' && git reset HEAD^ && git diff -w > foo.patch && git checkout . && git apply foo.patch && rm foo.patch }; f"
+		alias = "!f() { git symbolic-ref refs/heads/$2 refs/heads/$1; }; f"
+		diverges = "!f() { git rev-list --boundary ...$1 | grep '^-' | cut -c2-; }; f"
+        amm = commit --amend --no-edit
+        b = branch -v --sort=-committerdate
+        ac = "!f() { git add -A; git commit -m \"$1\"; }; f"
+
+    [core]
+	editor = vim
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
+
+    [difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+    [mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+    [mergetool "bc3"]
+      cmd = \"/Users/pivotal/Applications/Beyond Compare.app/Contents/MacOS/bcomp\"  \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+      trustExitCode = true
+
+    [merge]
+      tool=bc3
+
+
+
+[push]
+	default = simple
+[init]
+	templatedir = ~/.git-templates
