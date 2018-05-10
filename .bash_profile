@@ -381,7 +381,11 @@ gitReword() {
 }
 
 lss() {
-    du -s * .[!.]* | sort -nr | cut -f2- | xargs du -hsc
+    if [ -z $1 ]; then
+        du -s * .[!.]* | sort -nr | cut -f2- | xargs du -hsc
+    else
+        du -hsc $1
+    fi
 }
 
 zipp() {
