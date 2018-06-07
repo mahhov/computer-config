@@ -1,1 +1,17 @@
-.inputrc
+set completion-ignore-case On
+
+# arrow up
+"\e[A": history-search-backward
+# arrow down
+"\e[B": history-search-forward
+
+# ctrl arrow left & right
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
+
+# ctrl backspace & delete
+"\C-h": backward-kill-word
+"\e[3;5~": kill-word
+
+# ctrl L
+"\C-L": backward-kill-line
