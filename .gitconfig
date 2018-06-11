@@ -1,0 +1,31 @@
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	cp = cherry-pick
+	
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	lolaNotAll = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola9 = log --graph --decorate --pretty=oneline --abbrev-commit -n9
+	lola20 = log --graph --decorate --pretty=oneline --abbrev-commit -n20
+	
+	lo = log --pretty=oneline --abbrev-commit --all
+	lo9 = log --pretty=oneline --abbrev-commit -n9
+	lo20 = log --pretty=oneline --abbrev-commit -n20
+	
+	am = commit --amend --no-edit
+	b = branch -v --sort=-committerdate
+	ac = "!f() { git add . && git commit -m \"$1\"; }; f"
+
+[http]
+	cookiefile = /usr/local/google/home/manukh/.gitcookies
+
+[user]
+	name = manuk
+	email = manukh@chromium.org
+
+[core]
+	autocrlf = false
+	filemode = false
+[branch]
+	autosetuprebase = always
